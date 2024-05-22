@@ -3,8 +3,8 @@
 #include <libpynq.h>
 #include <time.h>
 #include <stepper.h>
-#include "communications.c"
-#include "default_color_sensor.c"
+#include "communications.h"
+#include "default_color_sensor.h"
 
 int main()
 {
