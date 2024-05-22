@@ -3,22 +3,19 @@
 #include <libpynq.h>
 #include <time.h>
 #include <stepper.h>
-#include "communications.h"
-#include "default_color_sensor.h"
+#include <communications.h>
+#include <edge_sensors.h>
 
 int main()
 {
   pynq_init();
-  uart_init(UART0);
-  switchbox_set_pin(IO_AR0, SWB_UART0_RX);
-  switchbox_set_pin(IO_AR1, SWB_UART0_TX);
-  uart_reset_fifos(UART0);
-  printf("UARTs have been initialized\n");
+  comms_init();
+  edge_sensors_init();
   stepper_init();
   stepper_enable();
-  stepper_set_speed(30000, 30000); //set to slow speed by default as a safety measure
+  stepper_set_speed(30000, 30000); // set to slow speed by default as a safety measure
 
-  stepper_steps(3200, -3200);
+  // do things
 
   uart_destroy(UART0);
   pynq_destroy();
