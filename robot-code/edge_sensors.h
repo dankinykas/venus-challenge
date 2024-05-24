@@ -13,6 +13,12 @@
 #define PULSECOUNTER_FREQUENCY 100000000
 #define COLOR_SENSOR_OUT IO_AR4
 
+enum EdgeSensors
+{
+  LEFT,
+  RIGHT
+};
+
 struct pulsecount {
   uint32_t count;
   uint32_t time;
@@ -22,6 +28,6 @@ struct pulsecount {
 void edge_sensors_init();
 
 // Returns whether a sensor is looking at an edge
-bool get_edge();
+bool get_edge(enum EdgeSensors sensor);
 
 #endif
