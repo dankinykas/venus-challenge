@@ -68,7 +68,7 @@ def update_plot():
     # ax.set_xlim(min(x)-1,max(x)+1)
     # ax.set_ylim(min(y)-1, max(y)+1)
     ax.scatter(x, y, s=size, c=colour)
-    plt.show()
+    plt.draw()
 
 # Initialize MQTT client
 client = mqtt.Client()
