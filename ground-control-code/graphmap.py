@@ -5,6 +5,7 @@ import numpy as np
 import time
 import csv
 
+
 # MQTT settings
 broker_address = "mqtt.ics.ele.tue.nl"
 topic = "/pynqbridge/32/recv" 
@@ -26,6 +27,7 @@ x = []
 y = []
 colour = []
 size = []
+
 
 
 with open('data.csv', 'w', newline='') as f:
@@ -58,17 +60,11 @@ def on_message(client, userdata, msg):
         writer = csv.writer(f)
         writer.writerow([data[0], data[1], data[2], data[3]])
 
-    update_plot()
-
-# Function to update the scatter plot
-def update_plot():
-
     ax.set_xlim(auto=True)
     ax.set_ylim(auto=True)
-    # ax.set_xlim(min(x)-1,max(x)+1)
-    # ax.set_ylim(min(y)-1, max(y)+1)
     ax.scatter(x, y, s=size, c=colour)
     plt.draw()
+
 
 # Initialize MQTT client
 client = mqtt.Client()
@@ -82,6 +78,7 @@ client.username_pw_set(username, password)
 client.loop_start()
 time.sleep(4)
 client.subscribe(topic)
+
 # Display the plot
 plt.show()
 
